@@ -1,4 +1,4 @@
-# LoremIpsum
+# Lorem Ipsum
 PowerShell function to create Lorem Ipsum random paragraphs.
 
 User inputs how many paragraphs or words they need they need, defaults to 5 paragraphs.
