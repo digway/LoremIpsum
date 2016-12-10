@@ -48,7 +48,7 @@ function New-IgLoremIpsum {
                    ParameterSetName = 'ParamSet2')]
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
-        [ValidateRange(0, 5000)]
+        [ValidateRange(3, 5000)]
         [int]$Count
     )
     Begin {
