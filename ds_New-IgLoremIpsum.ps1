@@ -49,7 +49,11 @@ function New-IgLoremIpsum {
         [ValidateNotNull()]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(3, 5000)]
-        [int]$Count
+        [int]$Count,
+        
+        # This will NOT send any output to the screen, but send the output directly to the clipboard.
+        # Useful if you want to put the output into another medium.
+        [switch]$SendToClipBoard
     )
     Begin {
         Function Get-IgCurrentLineNumber {
@@ -58,6 +62,8 @@ function New-IgLoremIpsum {
             $line.PadLeft(4, '0')
         }
         
+        # List of letters I wanted to get randomness from.
+        # Yes there are better ways, but to show examples and simplify...
         $list = @('a', 'a', 'b', 'c', 'd', 'e', 'e', 'f', 'g', 'h', 'i', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'o', 'p', 'q', 'r', 's', 't', 'u', 'u', 'v', 'w', 'x', 'y', 'z')
         
         if ($PSBoundParameters.ContainsKey('Count')) {
@@ -187,6 +193,10 @@ $currentParagraph
     }
     End {
         Write-Verbose "[Line: $(Get-IgCurrentLineNumber)] Output Total Words: $totalWords"
-        $allLoremIpsum
+        if ($SendToClipBoard) {
+            $allLoremIpsum | Set-Clipboard
+        } else {
+            $allLoremIpsum
+        }
     }
 }
